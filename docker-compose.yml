@@ -152,8 +152,9 @@ services:
     networks:
       - mynetwork
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-enterprise
     container_name: grafana
+    restart: unless-stopped
     ports:
       - 3000:3000
     volumes:
@@ -166,6 +167,7 @@ services:
       - prometheus
     networks:
       - mynetwork
+    user: '0'
   nacos-registry:
     image: nacos/nacos-server:v2.1.0
     container_name: nacos-registry
